@@ -1,0 +1,53 @@
+<script>
+    let continuar = true;
+
+    while (continuar) {
+        let opcao = prompt(
+            "===== MENU INTERATIVO =====\n" +
+            "1 - Ver Mensagem de Boas Vindas\n" +
+            "2 - Calcular Média\n" +
+            "3 - Sair\n" +
+            "Escolha uma opção:"
+        );
+
+        switch (opcao) {
+            case "2":
+                let nota1 = parseFloat(prompt("Digite a primeira nota (0 a 10):"));
+                let nota2 = parseFloat(prompt("Digite a segunda nota (0 a 10):"));
+
+                if (
+                    isNaN(nota1) || isNaN(nota2) ||
+                    nota1 < 0 || nota1 > 10 ||
+                    nota2 < 0 || nota2 > 10
+                ) {
+                    alert("Notas inválidas! Digite valores de 0 a 10.");
+                } else {
+                    let media = (nota1 + nota2) / 2;
+                    let situacao = "";
+
+                    if (media >= 7) {
+                        situacao = "Aprovado!";
+                    } else if (media >= 5) {
+                        situacao = "Recuperação.";
+                    } else {
+                        situacao = "Reprovado.";
+                    }
+
+                    alert("Média: " + media.toFixed(2) + "\nSituação: " + situacao);
+                }
+                break;
+
+            case "1":
+                alert("Olá! Bem-vindo ao sistema de notas.");
+                break;
+
+            case "3":
+                alert("Saindo... Até a próxima!");
+                continuar = false;
+                break;
+
+            default:
+                alert("Opção inválida. Tente novamente.");
+        }
+    }
+</script>
