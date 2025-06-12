@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 02</title>
+</head>
+<style>
+    .escuro {
+        background-color: black;
+        color: white;
+    }
+
+    body {
+        background-color: white;
+        color: black;
+    }
+</style>
+
+<body id="body">
+    <h1>Exercício 01</h1>
+    <button id="hora">Clique</button>
+    <p id="HoraAtual"></p>
+
+    <h1>Exercício 02</h1>
+    <button id="trocacor">🌙/🌞</button>
+    <p id="txt"></p>
+
+    <h1>Exercício 03</h1>
+    <button id="coracao">💜</button>
+    <p id="cont">Curtidas: 0</p>
+    
+    <h1>Exercício 04</h1>
+    <input type="text" id="obrig" name="obrig" onblur="valid()"/>
+    <button type="button" id="Vazio" > Enviar&nbsp;</button>
+    <div id="alerta" style="color: red;"></div>
+
+    
+    
+    
+    
+    <script>
+        //exe01
+        const paragrafo = document.getElementById("txt");
+        const botao = document.getElementById("trocacor").addEventListener("click", function () {
+            document.body.classList.toggle("escuro");
+        })
+
+        //exe02
+
+        document.getElementById("hora").addEventListener("click", function () {
+
+            //Hora atual
+
+            const horario = new Date();
+
+            //separar minutos e horas
+
+            const hora = horario.getHours();
+            const minutos = horario.getMinutes();
+            const segundos = horario.getSeconds();
+
+
+            //string
+
+            const ajuste_h = hora.toString().padStart(2, '0');
+            const ajuste_m = minutos.toString().padStart(2, '0');
+            const ajuste_s = segundos.toString().padStart(2, '0');
+
+            //formatação
+
+            const hora_final = `${ajuste_h}: ${ajuste_m}: ${ajuste_s}`;
+
+            document.getElementById("HoraAtual").innerText = hora_final;
+
+        })
+
+        //exe03 
+
+            let cont = 0;
+
+            const button = document.getElementById("coracao");
+            const likes = document.getElementById("cont");
+
+            button.addEventListener("click", function () {
+                cont++;
+                likes.textContent = `Likes: ${cont}`;
+        })
+        //exe04
+        function valid() {
+            const campo = document.getElementById("obrig");
+            const alerta = document.getElementById("alerta");
+
+            if (campo.value.trim() === "") {
+                alerta.textContent = "Campo obrigatório.";
+            } else {
+                alerta.textContent = "";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
