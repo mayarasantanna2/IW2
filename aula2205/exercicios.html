@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 02</title>
+</head>
+<style>
+    .escuro {
+        background-color: black;
+        color: white;
+    }
+
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    #p {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+    }
+
+    .aberto {
+        max-height: 1000px;
+    }
+
+    input {
+        padding: 8px;
+        font-size: 16px;
+        border: 2px solid gray;
+        border-radius: 4px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    input.invalido {
+        border-color: red;
+    }
+</style>
+
+<body id="body">
+    <h1>Exercício 01</h1>
+    <button id="hora">Clique</button>
+    <p id="HoraAtual"></p>
+
+    <h1>Exercício 02</h1>
+    <button id="trocacor">🌙/🌞</button>
+    <p id="txt"></p>
+
+    <h1>Exercício 03</h1>
+    <button id="coracao">💜</button>
+    <p id="cont">Curtidas: 0</p>
+
+    <h1>Exercício 04</h1>
+    <input type="text" id="obrig" name="obrig" onblur="valid()" />
+    <button type="button" id="Vazio"> Enviar&nbsp;</button>
+    <div id="alert" style="color: red;"></div>
+
+    <h1>Exercício 05</h1>
+    <button id="b5">Expandir/ Recolher</button>
+    <p id="p">Esse é o texto.</p>
+
+    <h1>Exercício 06</h1>
+    <div id="content">
+        Bom dia, seja bem vindo!
+    </div>
+
+    <button id="bCopiar">Copiar texto</button>
+
+    <h1>Exercício 07</h1>
+    <input id="exe07 " type="text" id="campoTexto" placeholder="Digite algo..." />
+
+    <script>
+        //exe01
+        const paragrafo = document.getElementById("txt");
+        const b1 = document.getElementById("trocacor").addEventListener("click", function () {
+            document.body.classList.toggle("escuro");
+        })
+
+        //exe02
+
+        document.getElementById("hora").addEventListener("click", function () {
+
+            //Hora atual
+
+            const horario = new Date();
+
+            //separar minutos e horas
+
+            const hora = horario.getHours();
+            const minutos = horario.getMinutes();
+            const segundos = horario.getSeconds();
+
+
+            //string
+
+            const ajuste_h = hora.toString().padStart(2, '0');
+            const ajuste_m = minutos.toString().padStart(2, '0');
+            const ajuste_s = segundos.toString().padStart(2, '0');
+
+            //formatação
+
+            const hora_final = `${ajuste_h}: ${ajuste_m}: ${ajuste_s}`;
+
+            document.getElementById("HoraAtual").innerText = hora_final;
+
+        })
+
+        //exe03 
+
+        let cont = 0;
+
+        const button = document.getElementById("coracao");
+        const likes = document.getElementById("cont");
+
+        button.addEventListener("click", function () {
+            cont++;
+            likes.textContent = `Likes: ${cont}`;
+        })
+        //exe04
+        function valid() {
+            const campo = document.getElementById("obrig");
+            const alert = document.getElementById("alert");
+
+            if (campo.value.trim() === "") {
+                alert.textContent = "Campo obrigatório.";
+            } else {
+                alert.textContent = "";
+            }
+        }
+        //exe05
+        const b5 = document.getElementById("b5");
+        const p = document.getElementById("p");
+
+        b5.addEventListener("click", function () {
+            P.classList.toggle("aberto");
+        })
+        //exe06
+        const b6 = document.getElementById('bCopiar');
+        const divcontent = document.getElementById('content');
+
+        b6.addEventListener('click', () => {
+            const texto = divcontent.innerText;
+
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('Copiado!');
+            }).catch(() => {
+                alert('Erro.');
+            });
+        });
+
+        //exe07
+        const camp = document.getElementById('campoTexto');
+
+        camp.addEventListener('input', () => {
+            if (camp.value.length < 5) {
+                camp.classList.add('invalido');
+            } else {
+                camp.classList.remove('invalido');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
